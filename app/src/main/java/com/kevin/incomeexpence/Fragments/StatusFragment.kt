@@ -1,10 +1,11 @@
-package com.kevin.incomeexpence
+package com.kevin.incomeexpence.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.kevin.incomeexpence.R
 
 class StatusFragment : Fragment() {
 

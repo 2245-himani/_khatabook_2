@@ -5,15 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_margin="@dimen/_14sdp"
-    tools:context=".HomeFragment">
+    tools:context=".Fragments.HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_height="@dimen/_100sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp"
-        app:cardUseCompatPadding="true">
+        android:layout_margin="@dimen/_15sdp">
 
         <TextView
             android:layout_width="match_parent"
@@ -22,6 +21,7 @@
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold"
             android:gravity="center"
+            android:textColor="#355CD0"
             android:layout_margin="@dimen/_10sdp"/>
 
         <TextView
@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:text="₹1750"
             android:textSize="@dimen/_27sdp"
-            android:layout_marginTop="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_47sdp"
             android:textStyle="bold"
+            android:textColor="#4B4A4D"
             android:gravity="center" />
 
     </androidx.cardview.widget.CardView>
@@ -38,22 +39,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_1sdp"
         android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_height="@dimen/_65sdp"
         android:layout_weight="1"
         app:cardBackgroundColor="#ECFDEE"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp"
-        app:cardUseCompatPadding="true">
+        android:layout_margin="@dimen/_15sdp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Income"
-            android:textColor="@color/black"
+            android:textColor="#44A01D"
             android:layout_margin="@dimen/_8sdp"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold" />
@@ -65,6 +67,7 @@
             android:layout_marginTop="@dimen/_29sdp"
             android:paddingLeft="@dimen/_8sdp"
             android:textSize="@dimen/_17sdp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <ImageView
@@ -79,18 +82,18 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_90sdp"
+            android:layout_height="@dimen/_65sdp"
             android:layout_weight="1"
             app:cardBackgroundColor="#FDF0F5"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardElevation="@dimen/_5sdp"
-            app:cardUseCompatPadding="true">
+            android:layout_margin="@dimen/_15sdp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Expence"
-                android:textColor="@color/black"
+                android:textColor="#AE3030"
                 android:layout_margin="@dimen/_8sdp"
                 android:textSize="@dimen/_13sdp"
                 android:textStyle="bold" />
@@ -101,6 +104,7 @@
                 android:text="₹1350"
                 android:layout_marginTop="@dimen/_29sdp"
                 android:paddingLeft="@dimen/_8sdp"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_17sdp"
                 android:textStyle="bold" />
 
@@ -120,9 +124,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recent Transactions :"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         android:textStyle="bold"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:textColor="#313030"
+        android:paddingLeft="@dimen/_10sdp"/>
 
 
 <!--    <androidx.cardview.widget.CardView-->
