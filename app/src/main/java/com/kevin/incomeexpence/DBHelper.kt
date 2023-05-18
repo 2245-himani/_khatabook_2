@@ -32,7 +32,7 @@ class DBHelper (
                 put("isexpence",isexpence)
             }
         }
-        db.insert(TABLE_NAME,null,values)
+        db.insert(TABLE_NAME,null, values)
     }
 
     fun getTransaction(): ArrayList<TransactionModel> {

@@ -9,8 +9,7 @@
     <item
         android:id="@+id/add"
         android:title="Add Amount"
-        android:icon="@drawable/plus"
-        android:iconTint="@color/white"/>
+        android:icon="@drawable/plus" />
 
     <item
         android:id="@+id/status"

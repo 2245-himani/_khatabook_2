@@ -8,7 +8,7 @@
     tools:context=".Fragments.AddDataFragment">
 
     <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
-        android:id="@+id/group_choices"
+        android:id="@+id/radiogroup"
         android:layout_margin="@dimen/_15sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +30,24 @@
 
     </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txtdate"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:text="17-05-2023"
+        android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -44,7 +62,15 @@
             android:background="@color/white"
             android:hint="Enter Amount"
             android:padding="10dp"
+            android:layout_marginLeft="@dimen/_40sdp"
             android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/calculator"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -61,8 +87,16 @@
             android:layout_height="50dp"
             android:background="@color/white"
             android:hint="Enter Category"
+            android:layout_marginLeft="@dimen/_40sdp"
             android:padding="10dp"
             android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/categories"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -79,8 +113,17 @@
             android:layout_height="50dp"
             android:background="@color/white"
             android:hint="Enter Notes"
+            android:layout_marginLeft="@dimen/_40sdp"
             android:padding="10dp"
             android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/notes"/>
+
 
     </androidx.cardview.widget.CardView>
 
@@ -89,7 +132,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_margin="20dp"
-            android:backgroundTint="#667BF1"
+            android:backgroundTint="#4862F6"
             app:cardCornerRadius="8dp"
             app:cardElevation="7dp">
 
