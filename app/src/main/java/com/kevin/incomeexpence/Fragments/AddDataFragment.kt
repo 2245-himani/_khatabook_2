@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kevin.incomeexpence.R
+import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.TransactionModel
 import com.kevin.incomeexpence.databinding.FragmentAddDataBinding
 

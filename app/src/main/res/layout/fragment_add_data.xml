@@ -7,11 +7,33 @@
     android:orientation="vertical"
     tools:context=".Fragments.AddDataFragment">
 
+    <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+        android:id="@+id/group_choices"
+        android:layout_margin="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tbgCheckedButton="@+id/income">
+
+        <com.nex3z.togglebuttongroup.button.LabelToggle
+            android:id="@+id/income"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_55sdp"
+            android:text="Income" />
+
+        <com.nex3z.togglebuttongroup.button.LabelToggle
+            android:id="@+id/expence"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_50sdp"
+            android:text="Expence" />
+
+    </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
 
@@ -29,7 +51,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
 
@@ -47,7 +69,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
 

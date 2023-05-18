@@ -1,12 +1,10 @@
-package com.kevin.incomeexpence.Fragments
+package com.kevin.incomeexpence
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import androidx.core.content.contentValuesOf
-import com.kevin.incomeexpence.TransactionModel
 
 class DBHelper (
     context: Context?
