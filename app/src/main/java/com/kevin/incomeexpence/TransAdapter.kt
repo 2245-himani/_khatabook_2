@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.kevin.incomeexpence.Model.TransactionModel
 
 class TransAdapter(list: ArrayList<TransactionModel>): RecyclerView.Adapter<TransAdapter.TransHolder>() {
 
@@ -26,9 +27,9 @@ class TransAdapter(list: ArrayList<TransactionModel>): RecyclerView.Adapter<Tran
     }
 
     override fun onBindViewHolder(holder: TransHolder, position: Int) {
-        holder.amount.text = list.get(position).amt.toString()
+        holder.amount.text = list.get(position).amount.toString()
         holder.category.text = list.get(position).category
-        holder.notes.text = list.get(position).notes
+        holder.notes.text = list.get(position).note
     }
 
     fun update(transaction: java.util.ArrayList<TransactionModel>) {

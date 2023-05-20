@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".Fragments.AddDataFragment">
 
-    <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+    <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
         android:id="@+id/radiogroup"
         android:layout_margin="@dimen/_15sdp"
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:layout_marginLeft="@dimen/_50sdp"
             android:text="Expence" />
 
-    </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+    </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.R
-import com.kevin.incomeexpence.TransAdapter
-import com.kevin.incomeexpence.TransactionModel
+import com.kevin.incomeexpence.Model.TransactionModel
 import com.kevin.incomeexpence.databinding.FragmentAddDataBinding
 import com.nex3z.togglebuttongroup.MultiSelectToggleGroup
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
@@ -30,33 +28,26 @@ class   AddDataFragment : Fragment() {
     ): View? {
         binding = FragmentAddDataBinding.inflate(layoutInflater)
 
-        binding.radiogroup.setOnClickListener {
-            fun onCheckedStateChanged(
-                group: MultiSelectToggleGroup?,
-                checkedId: Int,
-                isChecked: Boolean
-            ) {
-                if (checkedId == R.id.income) {
-                    isExpence = 0
-                } else if (checkedId == R.id.expence) {
-                    isExpence = 1
-                }
-            }
-        }
+        dbHelper = DBHelper(context)
 
-//        dbHelper = DBHelper(context)
-//
-//        var list = dbHelper.getTransaction()
-//
-//        var income = 0
-//        var expence = 0
-//        for (trans in list) {
-//            if (trans.isexpence == 0) {
-//                income += trans.amt
-//            } else {
-//                expence += trans.amt
-//            }
-//        }
+        return binding.root
+
+        initView()
+    }
+
+    private fun initView() {
+
+        binding.btnsubmit.setOnClickListener {
+            var amount = binding.edtamount.text.toString().toInt()
+            var category = binding.edtcategory.text.toString()
+            var note = binding.edtnotes.text.toString()
+
+            var model = TransactionModel(1, amount, category, note, isExpence)
+            dbHelper.addAmount(model)
+            binding.edtamount.setText("")
+            binding.edtcategory.setText("")
+            binding.edtnotes.setText("")
+        }
 
         binding.txtdate.setOnClickListener {
 
@@ -77,14 +68,41 @@ class   AddDataFragment : Fragment() {
             dialog.show()
         }
 
-        binding.btnsubmit.setOnClickListener {
-            var amt = binding.edtamount.text.toString().toInt()
-            var category = binding.edtcategory.text.toString()
-            var notes = binding.edtnotes.text.toString()
+        binding.radiogroup.setOnCheckedChangeListener(object : MultiSelectToggleGroup.OnCheckedStateChangeListener,
+            SingleSelectToggleGroup.OnCheckedChangeListener {
+            override fun onCheckedStateChanged(
+                group: MultiSelectToggleGroup?,
+                checkedId: Int,
+                isChecked: Boolean
+            ) {
+                if (checkedId == R.id.income) {
+                    isExpence = 0
+                } else if (checkedId == R.id.expence) {
+                    isExpence = 1
+                }
+            }
 
-            var model = TransactionModel(0, amt, category, notes, isExpence)
-            dbHelper.addAmount(model)
+            override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
+                if (checkedId == R.id.income) {
+                    isExpence = 0
+                } else if (checkedId == R.id.expence) {
+                    isExpence = 1
+                }
+            }
+        })
+
+        var list = dbHelper.getTransaction()
+
+        var income = 0
+        var expence = 0
+        for (trans in list) {
+            if (trans.isExpence == 0) {
+                income += trans.amount
+            } else {
+                expence += trans.amount
+            }
         }
-        return binding.root
+
     }
+
 }
