@@ -1,26 +1,32 @@
 package com.kevin.incomeexpence.Fragments
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.TimePicker
+import android.widget.Toast
 import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.R
 import com.kevin.incomeexpence.Model.TransactionModel
 import com.kevin.incomeexpence.databinding.FragmentAddDataBinding
 import com.nex3z.togglebuttongroup.MultiSelectToggleGroup
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class   AddDataFragment : Fragment() {
+class AddDataFragment : Fragment() {
 
     lateinit var binding: FragmentAddDataBinding
     var isExpence = 0
     lateinit var dbHelper: DBHelper
+    lateinit var trans: TransactionModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,26 +34,14 @@ class   AddDataFragment : Fragment() {
     ): View? {
         binding = FragmentAddDataBinding.inflate(layoutInflater)
 
+        initView()
+
         dbHelper = DBHelper(context)
 
         return binding.root
-
-        initView()
     }
 
     private fun initView() {
-
-        binding.btnsubmit.setOnClickListener {
-            var amount = binding.edtamount.text.toString().toInt()
-            var category = binding.edtcategory.text.toString()
-            var note = binding.edtnotes.text.toString()
-
-            var model = TransactionModel(1, amount, category, note, isExpence)
-            dbHelper.addAmount(model)
-            binding.edtamount.setText("")
-            binding.edtcategory.setText("")
-            binding.edtnotes.setText("")
-        }
 
         binding.txtdate.setOnClickListener {
 
@@ -59,16 +53,41 @@ class   AddDataFragment : Fragment() {
             var dates = currentDate.split("-")
             binding.txtdate.text = currentDate
 
-            var dialog = DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener{
-                override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+            var dialog =
+                DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
+                    override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+                        var selectedDate = "$p3-${(p2 + 1)}-$p1"
+                        binding.txtdate.text = selectedDate
+                    }
 
-                }
-
-            }, dates[2].toInt(), dates[1].toInt()-1, dates[0].toInt())
+                }, dates[2].toInt(), dates[1].toInt() - 1, dates[0].toInt())
             dialog.show()
         }
 
-        binding.radiogroup.setOnCheckedChangeListener(object : MultiSelectToggleGroup.OnCheckedStateChangeListener,
+//        binding.txttime.setOnClickListener {
+//
+//            var time = Time(1)
+//
+//            var format = SimpleDateFormat("hh:mm")
+//            var currentTime = format.format(time)
+//
+//            var times = currentTime.split(":")
+//            binding.txttime.text = currentTime
+//
+//            var dialog1 =
+//                TimePickerDialog(requireContext(), object : TimePickerDialog.OnTimeSetListener {
+//                    override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+//                        var selectedTime = "$p1:$p2"
+//                        binding.txttime.text = selectedTime
+//                    }
+//
+//                }, times[0].toInt(), times[1].toInt())
+//            dialog1.show()
+//
+//        }
+
+        binding.radiogroup.setOnCheckedChangeListener(object :
+            MultiSelectToggleGroup.OnCheckedStateChangeListener,
             SingleSelectToggleGroup.OnCheckedChangeListener {
             override fun onCheckedStateChanged(
                 group: MultiSelectToggleGroup?,
@@ -83,14 +102,12 @@ class   AddDataFragment : Fragment() {
             }
 
             override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
-                if (checkedId == R.id.income) {
-                    isExpence = 0
-                } else if (checkedId == R.id.expence) {
-                    isExpence = 1
-                }
+
             }
+
         })
 
+        dbHelper = DBHelper(context)
         var list = dbHelper.getTransaction()
 
         var income = 0
@@ -103,6 +120,21 @@ class   AddDataFragment : Fragment() {
             }
         }
 
+        binding.btnsubmit.setOnClickListener {
+            var amount = binding.edtamount.text.toString().toInt()
+            var category = binding.edtcategory.text.toString()
+            var note = binding.edtnotes.text.toString()
+
+            if (category.isEmpty() || note.isEmpty() || amount==0){
+                Toast.makeText(context, "Please enter data", Toast.LENGTH_SHORT).show()
+            } else {
+                var model = TransactionModel(1, amount, category, note, isExpence)
+                dbHelper.addAmount(model)
+                binding.edtamount.setText("")
+                binding.edtcategory.setText("")
+                binding.edtnotes.setText("")
+            }
+        }
     }
 
 }

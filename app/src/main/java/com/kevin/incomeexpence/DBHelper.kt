@@ -11,16 +11,15 @@ class DBHelper (
     context: Context?
 ) : SQLiteOpenHelper(context, "incomeexpence.db", null, 1 ) {
 
-    var TABLE_NAME = "transaction"
+    var TABLE_NAME = "trans"
     var Id = "id"
     var AMOUNT = "amount"
-    var CATEGORY = "Acategory"
+    var CATEGORY = "category"
     var NOTE = "note"
     var IS_EXPENCE = "isExpence"
 
     override fun onCreate(p0: SQLiteDatabase?) {
-        var que = "CREATE TABLE $TABLE_NAME($Id INTEGER PRIMARY KEY AUTOINCREMENT ,"
-        "$AMOUNT INTEGER, $CATEGORY TEXT, $NOTE TEXT, $IS_EXPENCE INTEGER)"
+        var que = "CREATE TABLE $TABLE_NAME($Id INTEGER PRIMARY KEY AUTOINCREMENT ,$AMOUNT INTEGER , $CATEGORY TEXT, $NOTE TEXT, $IS_EXPENCE INTEGER)"
         p0?.execSQL(que)
     }
 

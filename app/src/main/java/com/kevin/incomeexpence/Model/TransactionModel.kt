@@ -1,5 +1,7 @@
 package com.kevin.incomeexpence.Model
 
+import java.util.Date
+
 class TransactionModel {
 
     var id = 0

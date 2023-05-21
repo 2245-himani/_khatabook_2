@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp"
-        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp"
-        app:cardCornerRadius="@dimen/_10sdp">
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_10sdp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/listbg"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
-                app:cardCornerRadius="@dimen/_10sdp"
-                app:cardBackgroundColor="#B2DDF1">
+                app:cardBackgroundColor="#6CCBF8"
+                app:cardCornerRadius="@dimen/_10sdp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/_7sdp"
-                    android:src="@drawable/down"/>
+                    android:src="@drawable/down" />
 
             </androidx.cardview.widget.CardView>
 
@@ -37,29 +38,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingLeft="@dimen/_10sdp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_10sdp">
 
                 <TextView
                     android:id="@+id/category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="Grocery"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/notes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="Grocery Buy "
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -67,12 +68,12 @@
                 android:id="@+id/amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="₹300"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:gravity="right"
+                android:text="₹300"
                 android:textColor="#EF6B62"
-                android:textSize="@dimen/_16sdp"/>
+                android:textSize="@dimen/_16sdp" />
 
         </LinearLayout>
 
