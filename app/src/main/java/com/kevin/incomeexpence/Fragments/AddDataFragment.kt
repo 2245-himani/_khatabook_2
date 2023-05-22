@@ -47,8 +47,8 @@ class AddDataFragment : Fragment() {
 
             var date = Date()
 
-            var format = SimpleDateFormat("dd-MM-YYYY")
-            var currentDate = format.format(date)
+            var format1 = SimpleDateFormat("dd-MM-YYYY")
+            var currentDate = format1.format(date)
 
             var dates = currentDate.split("-")
             binding.txtdate.text = currentDate
@@ -56,6 +56,11 @@ class AddDataFragment : Fragment() {
             var dialog =
                 DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
                     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+
+                        var seleYear = p1
+                        var seleMonth = p2+1
+                        var seleDate = p3
+
                         var selectedDate = "$p3-${(p2 + 1)}-$p1"
                         binding.txtdate.text = selectedDate
                     }
@@ -64,31 +69,30 @@ class AddDataFragment : Fragment() {
             dialog.show()
         }
 
-//        binding.txttime.setOnClickListener {
-//
-//            var time = Time(1)
-//
-//            var format = SimpleDateFormat("hh:mm")
-//            var currentTime = format.format(time)
-//
-//            var times = currentTime.split(":")
-//            binding.txttime.text = currentTime
-//
-//            var dialog1 =
-//                TimePickerDialog(requireContext(), object : TimePickerDialog.OnTimeSetListener {
-//                    override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
-//                        var selectedTime = "$p1:$p2"
-//                        binding.txttime.text = selectedTime
-//                    }
-//
-//                }, times[0].toInt(), times[1].toInt())
-//            dialog1.show()
-//
-//        }
+        binding.txttime.setOnClickListener {
 
-        binding.radiogroup.setOnCheckedChangeListener(object :
-            MultiSelectToggleGroup.OnCheckedStateChangeListener,
-            SingleSelectToggleGroup.OnCheckedChangeListener {
+            var date = Date()
+
+            var format2 = SimpleDateFormat("hh:mm a")
+            var currentTime = format2.format(date)
+
+            binding.txttime.text = currentTime
+            var seleTime = currentTime
+
+
+
+            var dialog1 = TimePickerDialog(context, object : TimePickerDialog.OnTimeSetListener {
+                override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+
+                }
+
+            }, 10, 0, false)
+
+            dialog1.show()
+
+        }
+
+        binding.radiogroup.setOnCheckedChangeListener(object : MultiSelectToggleGroup.OnCheckedStateChangeListener{
             override fun onCheckedStateChanged(
                 group: MultiSelectToggleGroup?,
                 checkedId: Int,
@@ -100,11 +104,6 @@ class AddDataFragment : Fragment() {
                     isExpence = 1
                 }
             }
-
-            override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
-
-            }
-
         })
 
         dbHelper = DBHelper(context)

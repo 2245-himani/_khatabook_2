@@ -1,5 +1,6 @@
 package com.kevin.incomeexpence
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,33 +8,49 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.kevin.incomeexpence.Model.TransactionModel
+import com.kevin.incomeexpence.databinding.ItemtransactionBinding
 
-class TransAdapter(list: ArrayList<TransactionModel>): RecyclerView.Adapter<TransAdapter.TransHolder>() {
+class TransAdapter : RecyclerView.Adapter<TransAdapter.TransHolder>() {
 
-    var list = list
-    class TransHolder (itemView: View): ViewHolder(itemView){
-        var amount = itemView.findViewById<TextView>(R.id.amount)
-        var category = itemView.findViewById<TextView>(R.id.category)
-        var notes = itemView.findViewById<TextView>(R.id.notes)
+    var translist = ArrayList<TransactionModel>()
+    var isExpence = 0
+
+    class TransHolder(itemView: ItemtransactionBinding) : ViewHolder(itemView.root) {
+        var binding = itemView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.itemtransaction,parent,false)
-        return TransHolder(view)
+        var binding =
+            ItemtransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TransHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return translist.size
     }
 
     override fun onBindViewHolder(holder: TransHolder, position: Int) {
-        holder.amount.text = list.get(position).amount.toString()
-        holder.category.text = list.get(position).category
-        holder.notes.text = list.get(position).note
+        holder.binding.apply {
+            translist.get(position).apply {
+                txtcategory.text = category
+                txtnotes.text = note
+                txtamount.text = amount.toString()
+
+                if (isExpence == 0) {
+                    txtamount.setTextColor(Color.GREEN)
+                    listbg.setImageResource(R.drawable.transbg1)
+                    imgarrow.setImageResource(R.drawable.up)
+                } else {
+                    txtamount.setTextColor(Color.RED)
+                    listbg.setImageResource(R.drawable.transbg2)
+                    imgarrow.setImageResource(R.drawable.down)
+                }
+            }
+        }
     }
 
-    fun update(transaction: java.util.ArrayList<TransactionModel>) {
-        list = transaction
-        notifyDataSetChanged()
+    fun setTrans(translist: ArrayList<TransactionModel>) {
+        this.translist = translist
     }
+
 }

@@ -131,6 +131,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10sdp"
         android:text="Recent Transactions :"
+        android:layout_margin="@dimen/_3sdp"
         android:textColor="#313030"
         android:textSize="@dimen/_13sdp"
         android:textStyle="bold" />
