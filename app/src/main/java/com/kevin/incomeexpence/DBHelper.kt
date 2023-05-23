@@ -62,4 +62,16 @@ class DBHelper (
         }
         return translist
     }
+    fun updateTrans(transactionModel: TransactionModel) {
+        var db = writableDatabase
+        var values = ContentValues().apply {
+            transactionModel.apply {
+                put(AMOUNT,amount)
+                put(CATEGORY,category)
+                put(NOTE,note)
+                put(IS_EXPENCE,isExpence)
+            }
+        }
+        db.update(TABLE_NAME,values,"id=${transactionModel.id}",null)
+    }
 }

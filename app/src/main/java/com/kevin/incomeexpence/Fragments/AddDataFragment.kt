@@ -79,8 +79,6 @@ class AddDataFragment : Fragment() {
             binding.txttime.text = currentTime
             var seleTime = currentTime
 
-
-
             var dialog1 = TimePickerDialog(context, object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
 
