@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.kevin.incomeexpence.Model.TransactionModel
 import com.kevin.incomeexpence.databinding.ItemtransactionBinding
 
-class TransAdapter(update: (TransactionModel) -> Unit) : RecyclerView.Adapter<TransAdapter.TransHolder>() {
+class TransAdapter(update: (TransactionModel) -> Unit, delete:(Int) -> Unit) : RecyclerView.Adapter<TransAdapter.TransHolder>() {
 
     var update = update
+    var delete = delete
 
     var translist = ArrayList<TransactionModel>()
-
     lateinit var context: Context
 
     class TransHolder(itemView: ItemtransactionBinding) : ViewHolder(itemView.root) {
@@ -44,13 +44,15 @@ class TransAdapter(update: (TransactionModel) -> Unit) : RecyclerView.Adapter<Tr
                 txtamount.text = amount.toString()
 
                 if (isExpence == 0) {
-                    txtamount.setTextColor(Color.GREEN)
+                    txtamount.setTextColor(Color.parseColor("#05C005"))
                     listbg.setImageResource(R.drawable.transbg1)
                     imgarrow.setImageResource(R.drawable.up)
+                    cardbg.setCardBackgroundColor(Color.parseColor("#F0FDF4"))
                 } else {
                     txtamount.setTextColor(Color.RED)
                     listbg.setImageResource(R.drawable.transbg2)
                     imgarrow.setImageResource(R.drawable.down)
+                    cardbg.setCardBackgroundColor(Color.parseColor("#FFF9F9"))
                 }
             }
         }
@@ -69,7 +71,7 @@ class TransAdapter(update: (TransactionModel) -> Unit) : RecyclerView.Adapter<Tr
                         }
 
                         if (p0?.itemId == R.id.delete) {
-
+                            delete.invoke(translist.get(position).id)
                         }
                         return true
                     }

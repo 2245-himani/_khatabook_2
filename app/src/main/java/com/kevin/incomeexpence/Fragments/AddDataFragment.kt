@@ -3,6 +3,7 @@ package com.kevin.incomeexpence.Fragments
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -90,19 +91,20 @@ class AddDataFragment : Fragment() {
 
         }
 
-        binding.radiogroup.setOnCheckedChangeListener(object : MultiSelectToggleGroup.OnCheckedStateChangeListener{
-            override fun onCheckedStateChanged(
-                group: MultiSelectToggleGroup?,
-                checkedId: Int,
-                isChecked: Boolean
-            ) {
-                if (checkedId == R.id.income) {
-                    isExpence = 0
-                } else if (checkedId == R.id.expence) {
-                    isExpence = 1
-                }
-            }
-        })
+        binding.income.setOnClickListener {
+            isExpence = 0
+            binding.income.setCardBackgroundColor(Color.parseColor("#93FAA4"))
+            binding.expence.setCardBackgroundColor(Color.parseColor("#ffffff"))
+            binding.txtincome.setTextColor(Color.parseColor("#ffffff"))
+            binding.txtexpence.setTextColor(Color.parseColor("#707070"))
+        }
+        binding.expence.setOnClickListener {
+            isExpence = 1
+            binding.income.setCardBackgroundColor(Color.parseColor("#ffffff"))
+            binding.expence.setCardBackgroundColor(Color.parseColor("#F86C98"))
+            binding.txtexpence.setTextColor(Color.parseColor("#ffffff"))
+            binding.txtincome.setTextColor(Color.parseColor("#717171"))
+        }
 
         dbHelper = DBHelper(context)
         var list = dbHelper.getTransaction()

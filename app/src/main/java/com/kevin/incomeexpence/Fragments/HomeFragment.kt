@@ -37,15 +37,22 @@ class HomeFragment : Fragment() {
         updateTotal(translist)
         translist = translist.reversed() as ArrayList<TransactionModel>
 
-        adapter = TransAdapter{
+        adapter = TransAdapter({
             updatedialog(it)
-        }
+        },{
+            deleteTrans(it)
+        })
         adapter.setTrans(translist)
 
         binding.rcvtransaction.layoutManager = LinearLayoutManager(context)
         binding.rcvtransaction.adapter = adapter
 
         return binding.root
+    }
+
+    private fun deleteTrans(it: Int) {
+        dbHelper.deleteTrans(it)
+        adapter.updateData(dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>)
     }
 
     fun updateTotal(translist: ArrayList<TransactionModel>) {
@@ -56,7 +63,6 @@ class HomeFragment : Fragment() {
                 totalincome += trans.amount
             } else{
                 totalExpence += trans.amount
-
             }
         }
 
@@ -75,13 +81,21 @@ class HomeFragment : Fragment() {
         bind.edtcategory.setText(transactionModel.category)
         bind.edtnotes.setText(transactionModel.note)
 
-        bind.radiogroup1.setOnCheckedChangeListener(object : SingleSelectToggleGroup.OnCheckedChangeListener{
+        bind.radiogroup1.setOnCheckedChangeListener(object : SingleSelectToggleGroup.OnCheckedChangeListener,
+            MultiSelectToggleGroup.OnCheckedStateChangeListener {
             override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
                 if (checkedId == R.id.income) {
                     isExpence = 0
                 } else if (checkedId == R.id.expence) {
                     isExpence = 1
                 }
+            }
+
+            override fun onCheckedStateChanged(
+                group: MultiSelectToggleGroup?,
+                checkedId: Int,
+                isChecked: Boolean
+            ) {
             }
         })
         bind.btnsubmit.setOnClickListener {
@@ -93,6 +107,7 @@ class HomeFragment : Fragment() {
                 dbHelper.updateTrans(model)
                 dialog.dismiss()
                 adapter.updateData(dbHelper.getTransaction())
+            adapter.updateData(dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>)
         }
         dialog.show()
     }

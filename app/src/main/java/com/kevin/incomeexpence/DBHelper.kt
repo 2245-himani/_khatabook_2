@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.security.identity.AccessControlProfileId
 import com.kevin.incomeexpence.Model.TransactionModel
 
 class DBHelper (
@@ -73,5 +74,9 @@ class DBHelper (
             }
         }
         db.update(TABLE_NAME,values,"id=${transactionModel.id}",null)
+    }
+    fun deleteTrans(id: Int) {
+        var db = writableDatabase
+        db.delete(TABLE_NAME,"id=$id",null)
     }
 }
