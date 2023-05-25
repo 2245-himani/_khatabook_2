@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.StatusFragment"
-    android:orientation="vertical">
+    android:background="#E1E5FD"
+    android:orientation="vertical"
+    tools:context=".Fragments.StatusFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -17,20 +18,104 @@
         android:textSize="@dimen/_17sdp"
         android:textStyle="bold" />
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_230sdp"
-        app:cardCornerRadius="@dimen/_10sdp"
-        android:layout_margin="@dimen/_20sdp"
-        app:cardElevation="@dimen/_20sdp">
+        android:layout_height="match_parent">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_gravity="center"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_430sdp"
+            android:layout_marginTop="@dimen/_170sdp"
+            app:cardBackgroundColor="#FAF9F9"
+            app:cardCornerRadius="@dimen/_20sdp">
 
-    </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_110sdp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_85sdp"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_8sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:text="Transaction of   Income :"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/numincome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:text="8"
+                        android:textColor="#22c391"
+                        android:textSize="@dimen/_30sdp"
+                        android:textStyle="bold" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_85sdp"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_8sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:text="Transaction of Expence :"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/numexpence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:text="5"
+                        android:textColor="#F86C98"
+                        android:textSize="@dimen/_30sdp"
+                        android:textStyle="bold" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_230sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_40sdp">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/piechart"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
 
 </LinearLayout>

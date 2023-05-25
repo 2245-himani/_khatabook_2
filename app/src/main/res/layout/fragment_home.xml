@@ -34,24 +34,24 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="₹"
-                android:textColor="#FAFAFA"
-                android:textSize="@dimen/_27sdp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="₹"
+                    android:textColor="#FAFAFA"
+                    android:textSize="@dimen/_27sdp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/totalamount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="1750"
-                android:textColor="#FAFAFA"
-                android:textSize="@dimen/_27sdp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/totalamount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1750"
+                    android:textColor="#FAFAFA"
+                    android:textSize="@dimen/_27sdp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -74,7 +74,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/icomebg"/>
+                    android:background="@drawable/icomebg" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,25 +89,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_29sdp"
-                    android:paddingLeft="@dimen/_8sdp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_8sdp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="₹"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/totalincome"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="wrap_content"
-                    android:text="2000"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/totalincome"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="wrap_content"
+                        android:text="2000"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -116,10 +116,10 @@
                     android:layout_height="@dimen/_35sdp"
                     android:layout_gravity="right|center"
                     android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/transbg1"
+                    android:backgroundTint="#4B14A703"
                     android:padding="@dimen/_3sdp"
                     android:src="@drawable/up"
-                    android:background="@drawable/transbg1"
-                    android:backgroundTint="#4014A703"
                     app:tint="#fff" />
 
             </androidx.cardview.widget.CardView>
@@ -135,7 +135,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/expencebg"/>
+                    android:background="@drawable/expencebg" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -150,25 +150,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_29sdp"
-                    android:paddingLeft="@dimen/_8sdp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_8sdp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="₹"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/totalexpence"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="wrap_content"
-                    android:text="1350"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/totalexpence"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="wrap_content"
+                        android:text="1350"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -177,10 +177,10 @@
                     android:layout_height="@dimen/_35sdp"
                     android:layout_gravity="right|center"
                     android:layout_margin="@dimen/_10sdp"
-                    android:padding="@dimen/_3sdp"
-                    android:src="@drawable/down"
                     android:background="@drawable/transbg1"
                     android:backgroundTint="#40A7034A"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/down"
                     app:tint="#fff" />
 
             </androidx.cardview.widget.CardView>
@@ -192,9 +192,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
         android:paddingLeft="@dimen/_10sdp"
         android:text="Recent Transactions :"
-        android:layout_margin="@dimen/_3sdp"
         android:textColor="#313030"
         android:textSize="@dimen/_13sdp"
         android:textStyle="bold" />
@@ -203,6 +203,6 @@
         android:id="@+id/rcvtransaction"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_55sdp"/>
+        android:layout_marginBottom="@dimen/_55sdp" />
 
 </LinearLayout>

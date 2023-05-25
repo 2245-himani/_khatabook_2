@@ -1,7 +1,9 @@
 package com.kevin.incomeexpence.Fragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,7 +16,6 @@ import com.kevin.incomeexpence.Model.TransactionModel
 import com.kevin.incomeexpence.TransAdapter
 import com.kevin.incomeexpence.databinding.FragmentHomeBinding
 import com.kevin.incomeexpence.databinding.UpdatedialogBinding
-
 
 class HomeFragment : Fragment() {
 
@@ -37,7 +38,7 @@ class HomeFragment : Fragment() {
 
         adapter = TransAdapter({
             updatedialog(it)
-        },{
+        }, {
             deleteTrans(it)
         })
         adapter.setTrans(translist)
@@ -49,8 +50,27 @@ class HomeFragment : Fragment() {
     }
 
     private fun deleteTrans(it: Int) {
-        dbHelper.deleteTrans(it)
-        adapter.updateData(dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>)
+
+        var dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Delet Transaction!!")
+            .setMessage("Are You Sure?")
+            .setPositiveButton("Yes", object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+
+                    dbHelper.deleteTrans(it)
+                    updateTotal(dbHelper.getTransaction())
+                    adapter.updateData(
+                        dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>
+                    )
+
+                }
+            }).setNegativeButton("No", object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+
+                }
+            }).create()
+        dialog.show()
+
     }
 
     fun updateTotal(translist: ArrayList<TransactionModel>) {
@@ -59,14 +79,14 @@ class HomeFragment : Fragment() {
         for (trans in translist) {
             if (trans.isExpence == 0) {
                 totalincome += trans.amount
-            } else{
+            } else {
                 totalExpence += trans.amount
             }
         }
 
         binding.totalincome.text = totalincome.toString()
         binding.totalexpence.text = totalExpence.toString()
-        binding.totalamount.text = (totalincome-totalExpence).toString()
+        binding.totalamount.text = (totalincome - totalExpence).toString()
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -81,7 +101,7 @@ class HomeFragment : Fragment() {
 
         bind.income.setOnClickListener {
             isExpence = 0
-            bind.income.setCardBackgroundColor(Color.parseColor("#93FAA4"))
+            bind.income.setCardBackgroundColor(Color.parseColor("#22c391"))
             bind.expence.setCardBackgroundColor(Color.parseColor("#ffffff"))
             bind.txtincome.setTextColor(Color.parseColor("#ffffff"))
             bind.txtexpence.setTextColor(Color.parseColor("#707070"))
@@ -91,7 +111,7 @@ class HomeFragment : Fragment() {
             bind.income.setCardBackgroundColor(Color.parseColor("#ffffff"))
             bind.expence.setCardBackgroundColor(Color.parseColor("#F86C98"))
             bind.txtexpence.setTextColor(Color.parseColor("#ffffff"))
-            bind .txtincome.setTextColor(Color.parseColor("#717171"))
+            bind.txtincome.setTextColor(Color.parseColor("#717171"))
         }
 
         dbHelper = DBHelper(context)
@@ -111,13 +131,28 @@ class HomeFragment : Fragment() {
             var amount = bind.edtamount.text.toString().toInt()
             var category = bind.edtcategory.text.toString()
             var note = bind.edtnotes.text.toString()
-            var model = TransactionModel(transactionModel.id,amount, category, note, transactionModel.isExpence)
+            var date = bind.txtadddate.text.toString()
+            var month = bind.txtadddate.text.toString()
+            var year = bind.txtadddate.text.toString()
+            var model = TransactionModel(
+                transactionModel.id,
+                amount,
+                category,
+                note,
+                transactionModel.isExpence,
+                date,
+                month,
+                year
+            )
 
-                dbHelper.updateTrans(model)
-                dialog.dismiss()
-                adapter.updateData(dbHelper.getTransaction())
+            dbHelper.updateTrans(model)
+            dialog.dismiss()
+            adapter.updateData(dbHelper.getTransaction())
+            updateTotal(dbHelper.getTransaction())
             adapter.updateData(dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>)
+
         }
+
         dialog.show()
     }
 

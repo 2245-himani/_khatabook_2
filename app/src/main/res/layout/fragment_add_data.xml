@@ -28,19 +28,19 @@
             android:id="@+id/income"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_weight="1"
             android:layout_margin="@dimen/_15sdp"
+            android:layout_weight="1"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_5sdp" >
+            app:cardElevation="@dimen/_5sdp">
 
             <TextView
                 android:id="@+id/txtincome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="Income"
                 android:textSize="@dimen/_15sdp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>
 
@@ -51,16 +51,16 @@
             android:layout_margin="@dimen/_15sdp"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_5sdp" >
+            app:cardElevation="@dimen/_5sdp">
 
             <TextView
                 android:id="@+id/txtexpence"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="Expence"
                 android:textSize="@dimen/_15sdp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>
 
@@ -88,7 +88,7 @@
             android:layout_margin="@dimen/_15sdp"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="13:07"
+            android:text="_ _ : _ _"
             android:textColor="@color/black" />
 
     </LinearLayout>

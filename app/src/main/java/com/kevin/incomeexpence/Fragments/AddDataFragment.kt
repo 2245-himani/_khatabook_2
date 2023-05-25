@@ -53,9 +53,9 @@ class AddDataFragment : Fragment() {
                 DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
                     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
 
-                        var seleYear = p1
-                        var seleMonth = p2+1
-                        var seleDate = p3
+                        var Year = p1
+                        var Month = p2 + 1
+                        var Date = p3
 
                         var selectedDate = "$p3-${(p2 + 1)}-$p1"
                         binding.txtadddate.text = selectedDate
@@ -88,7 +88,7 @@ class AddDataFragment : Fragment() {
 
         binding.income.setOnClickListener {
             isExpence = 0
-            binding.income.setCardBackgroundColor(Color.parseColor("#93FAA4"))
+            binding.income.setCardBackgroundColor(Color.parseColor("#22c391"))
             binding.expence.setCardBackgroundColor(Color.parseColor("#ffffff"))
             binding.txtincome.setTextColor(Color.parseColor("#ffffff"))
             binding.txtexpence.setTextColor(Color.parseColor("#707070"))
@@ -122,10 +122,11 @@ class AddDataFragment : Fragment() {
             var month = binding.txtadddate.text.toString()
             var year = binding.txtadddate.text.toString()
 
-            if (category.isEmpty() || note.isEmpty() || amount.toString().isEmpty()){
+            if (category.isEmpty() || note.isEmpty() || amount.toString().isEmpty()) {
                 Toast.makeText(context, "Please enter data", Toast.LENGTH_SHORT).show()
             } else {
-                var model = TransactionModel(1, amount, category, note, isExpence, date, month , year)
+                var model =
+                    TransactionModel(1, amount, category, note, isExpence, date, month, year)
                 dbHelper.addAmount(model)
                 binding.edtamount.setText("")
                 binding.edtcategory.setText("")

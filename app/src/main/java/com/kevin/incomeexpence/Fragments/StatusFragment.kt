@@ -10,8 +10,11 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.Model.TransactionModel
 import com.kevin.incomeexpence.R
+import com.kevin.incomeexpence.TransAdapter
+import com.kevin.incomeexpence.databinding.FragmentHomeBinding
 import com.kevin.incomeexpence.databinding.FragmentStatusBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -19,7 +22,6 @@ import kotlin.collections.ArrayList
 class StatusFragment : Fragment() {
 
     lateinit var binding: FragmentStatusBinding
-    var translist = ArrayList<TransactionModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
