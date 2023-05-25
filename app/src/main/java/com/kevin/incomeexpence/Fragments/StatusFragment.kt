@@ -19,6 +19,7 @@ import kotlin.collections.ArrayList
 class StatusFragment : Fragment() {
 
     lateinit var binding: FragmentStatusBinding
+    var translist = ArrayList<TransactionModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

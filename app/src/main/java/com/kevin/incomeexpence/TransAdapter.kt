@@ -27,6 +27,7 @@ class TransAdapter(update: (TransactionModel) -> Unit) : RecyclerView.Adapter<Tr
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransHolder {
+        context = parent.context
         var binding = ItemtransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TransHolder(binding)
     }

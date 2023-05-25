@@ -1,5 +1,6 @@
 package com.kevin.incomeexpence.Fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +10,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.Model.TransactionModel
+import com.kevin.incomeexpence.R
 import com.kevin.incomeexpence.TransAdapter
 import com.kevin.incomeexpence.databinding.FragmentHomeBinding
 import com.kevin.incomeexpence.databinding.UpdatedialogBinding
+import com.nex3z.togglebuttongroup.MultiSelectToggleGroup
+import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
 
 
 class HomeFragment : Fragment() {
@@ -61,28 +65,25 @@ class HomeFragment : Fragment() {
         binding.totalamount.text = (totalincome-totalExpence).toString()
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun updatedialog(transactionModel: TransactionModel) {
         var dialog = Dialog(requireContext())
         var bind = UpdatedialogBinding.inflate(layoutInflater)
         dialog.setContentView(bind.root)
 
-        bind.edtamount.setText(transactionModel.amount)
+        bind.edtamount.setText(transactionModel.amount.toString())
         bind.edtcategory.setText(transactionModel.category)
         bind.edtnotes.setText(transactionModel.note)
 
-//        bind.radiogroup.setOnCheckedChangeListener(object : MultiSelectToggleGroup.OnCheckedStateChangeListener{
-//            override fun onCheckedStateChanged(
-//                group: MultiSelectToggleGroup?,
-//                checkedId: Int,
-//                isChecked: Boolean
-//            ) {
-//                if (checkedId == R.id.income) {
-//                    isExpence = 0
-//                } else if (checkedId == R.id.expence) {
-//                    isExpence = 1
-//                }
-//            }
-//        })
+        bind.radiogroup1.setOnCheckedChangeListener(object : SingleSelectToggleGroup.OnCheckedChangeListener{
+            override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
+                if (checkedId == R.id.income) {
+                    isExpence = 0
+                } else if (checkedId == R.id.expence) {
+                    isExpence = 1
+                }
+            }
+        })
         bind.btnsubmit.setOnClickListener {
             var amount = bind.edtamount.text.toString().toInt()
             var category = bind.edtcategory.text.toString()
