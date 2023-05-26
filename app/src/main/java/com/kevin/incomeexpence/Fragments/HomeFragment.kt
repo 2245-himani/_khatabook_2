@@ -2,6 +2,7 @@ package com.kevin.incomeexpence.Fragments
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +11,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.Model.TransactionModel
-import com.kevin.incomeexpence.R
 import com.kevin.incomeexpence.TransAdapter
 import com.kevin.incomeexpence.databinding.FragmentHomeBinding
 import com.kevin.incomeexpence.databinding.UpdatedialogBinding
-import com.nex3z.togglebuttongroup.MultiSelectToggleGroup
-import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
 
 
 class HomeFragment : Fragment() {
@@ -81,23 +79,34 @@ class HomeFragment : Fragment() {
         bind.edtcategory.setText(transactionModel.category)
         bind.edtnotes.setText(transactionModel.note)
 
-        bind.radiogroup1.setOnCheckedChangeListener(object : SingleSelectToggleGroup.OnCheckedChangeListener,
-            MultiSelectToggleGroup.OnCheckedStateChangeListener {
-            override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
-                if (checkedId == R.id.income) {
-                    isExpence = 0
-                } else if (checkedId == R.id.expence) {
-                    isExpence = 1
-                }
-            }
+        bind.income.setOnClickListener {
+            isExpence = 0
+            bind.income.setCardBackgroundColor(Color.parseColor("#93FAA4"))
+            bind.expence.setCardBackgroundColor(Color.parseColor("#ffffff"))
+            bind.txtincome.setTextColor(Color.parseColor("#ffffff"))
+            bind.txtexpence.setTextColor(Color.parseColor("#707070"))
+        }
+        bind.expence.setOnClickListener {
+            isExpence = 1
+            bind.income.setCardBackgroundColor(Color.parseColor("#ffffff"))
+            bind.expence.setCardBackgroundColor(Color.parseColor("#F86C98"))
+            bind.txtexpence.setTextColor(Color.parseColor("#ffffff"))
+            bind .txtincome.setTextColor(Color.parseColor("#717171"))
+        }
 
-            override fun onCheckedStateChanged(
-                group: MultiSelectToggleGroup?,
-                checkedId: Int,
-                isChecked: Boolean
-            ) {
+        dbHelper = DBHelper(context)
+        var list = dbHelper.getTransaction()
+
+        var income = 0
+        var expence = 0
+        for (trans in list) {
+            if (trans.isExpence == 0) {
+                income += trans.amount
+            } else {
+                expence += trans.amount
             }
-        })
+        }
+
         bind.btnsubmit.setOnClickListener {
             var amount = bind.edtamount.text.toString().toInt()
             var category = bind.edtcategory.text.toString()

@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.security.identity.AccessControlProfileId
 import com.kevin.incomeexpence.Model.TransactionModel
 
 class DBHelper (
@@ -18,9 +17,11 @@ class DBHelper (
     var CATEGORY = "category"
     var NOTE = "note"
     var IS_EXPENCE = "isExpence"
-
+    var DATE = "date"
+    var MONTH = "month"
+    var YEAR = "year"
     override fun onCreate(p0: SQLiteDatabase?) {
-        var que = "CREATE TABLE $TABLE_NAME($Id INTEGER PRIMARY KEY AUTOINCREMENT ,$AMOUNT INTEGER , $CATEGORY TEXT, $NOTE TEXT, $IS_EXPENCE INTEGER)"
+        var que = "CREATE TABLE $TABLE_NAME($Id INTEGER PRIMARY KEY AUTOINCREMENT ,$AMOUNT INTEGER , $CATEGORY TEXT, $NOTE TEXT, $IS_EXPENCE INTEGER, $DATE TEXT,$MONTH TEXT,$YEAR TEXT)"
         p0?.execSQL(que)
     }
 
@@ -37,6 +38,9 @@ class DBHelper (
                put(CATEGORY,category)
                put(NOTE,note)
                put(IS_EXPENCE,isExpence)
+                put(DATE,date)
+                put(MONTH,month)
+                put(YEAR,year)
             }
         }
         db.insert(TABLE_NAME,null, values)
@@ -56,8 +60,11 @@ class DBHelper (
             var category = cursor.getString(2)
             var note = cursor.getString(3)
             var isexpence = cursor.getInt(4)
+            var date = cursor.getString(5)
+            var month = cursor.getString(6)
+            var year = cursor.getString(7)
 
-            var model = TransactionModel(id, amount, category, note, isexpence)
+            var model = TransactionModel(id, amount, category, note, isexpence , date, month , year)
             translist.add(model)
             cursor.moveToNext()
         }
@@ -71,6 +78,9 @@ class DBHelper (
                 put(CATEGORY,category)
                 put(NOTE,note)
                 put(IS_EXPENCE,isExpence)
+                put(DATE,date)
+                put(MONTH,month)
+                put(YEAR,year)
             }
         }
         db.update(TABLE_NAME,values,"id=${transactionModel.id}",null)

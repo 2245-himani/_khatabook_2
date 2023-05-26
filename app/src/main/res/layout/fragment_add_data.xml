@@ -72,13 +72,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtdate"
+            android:id="@+id/txtadddate"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_margin="@dimen/_15sdp"
             android:background="@drawable/shape"
             android:gravity="center"
-            android:text="17-05-2023"
+            android:text="_ _-_ _-20_ _"
             android:textColor="@color/black" />
 
         <TextView

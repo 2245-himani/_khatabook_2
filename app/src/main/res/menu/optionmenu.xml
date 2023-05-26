@@ -3,10 +3,14 @@
 
     <item
         android:id="@+id/edit"
+        android:icon="@drawable/edit"
+        android:iconTint="#2196F3"
         android:title="Edit"/>
 
     <item
         android:id="@+id/delete"
+        android:icon="@drawable/delete"
+        android:iconTint="#FA4E4E"
         android:title="Delete"/>
 
 </menu>

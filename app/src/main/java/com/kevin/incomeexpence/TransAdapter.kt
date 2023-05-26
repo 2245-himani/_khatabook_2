@@ -42,6 +42,7 @@ class TransAdapter(update: (TransactionModel) -> Unit, delete:(Int) -> Unit) : R
                 txtcategory.text = category
                 txtnotes.text = note
                 txtamount.text = amount.toString()
+                txtdate.text = date
 
                 if (isExpence == 0) {
                     txtamount.setTextColor(Color.parseColor("#05C005"))

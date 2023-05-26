@@ -2,7 +2,6 @@ package com.kevin.incomeexpence.Fragments
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,12 +12,8 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
 import com.kevin.incomeexpence.DBHelper
-import com.kevin.incomeexpence.R
 import com.kevin.incomeexpence.Model.TransactionModel
 import com.kevin.incomeexpence.databinding.FragmentAddDataBinding
-import com.nex3z.togglebuttongroup.MultiSelectToggleGroup
-import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -44,7 +39,7 @@ class AddDataFragment : Fragment() {
 
     private fun initView() {
 
-        binding.txtdate.setOnClickListener {
+        binding.txtadddate.setOnClickListener {
 
             var date = Date()
 
@@ -52,7 +47,7 @@ class AddDataFragment : Fragment() {
             var currentDate = format1.format(date)
 
             var dates = currentDate.split("-")
-            binding.txtdate.text = currentDate
+            binding.txtadddate.text = currentDate
 
             var dialog =
                 DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
@@ -63,7 +58,7 @@ class AddDataFragment : Fragment() {
                         var seleDate = p3
 
                         var selectedDate = "$p3-${(p2 + 1)}-$p1"
-                        binding.txtdate.text = selectedDate
+                        binding.txtadddate.text = selectedDate
                     }
 
                 }, dates[2].toInt(), dates[1].toInt() - 1, dates[0].toInt())
@@ -123,11 +118,14 @@ class AddDataFragment : Fragment() {
             var amount = binding.edtamount.text.toString().toInt()
             var category = binding.edtcategory.text.toString()
             var note = binding.edtnotes.text.toString()
+            var date = binding.txtadddate.text.toString()
+            var month = binding.txtadddate.text.toString()
+            var year = binding.txtadddate.text.toString()
 
-            if (category.isEmpty() || note.isEmpty() || amount==0){
+            if (category.isEmpty() || note.isEmpty() || amount.toString().isEmpty()){
                 Toast.makeText(context, "Please enter data", Toast.LENGTH_SHORT).show()
             } else {
-                var model = TransactionModel(1, amount, category, note, isExpence)
+                var model = TransactionModel(1, amount, category, note, isExpence, date, month , year)
                 dbHelper.addAmount(model)
                 binding.edtamount.setText("")
                 binding.edtcategory.setText("")
