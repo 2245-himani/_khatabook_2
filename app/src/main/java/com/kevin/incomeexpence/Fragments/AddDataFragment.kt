@@ -13,6 +13,7 @@ import android.widget.TimePicker
 import android.widget.Toast
 import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.Model.TransactionModel
+import com.kevin.incomeexpence.TransAdapter
 import com.kevin.incomeexpence.databinding.FragmentAddDataBinding
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -23,6 +24,7 @@ class AddDataFragment : Fragment() {
     var isExpence = 0
     lateinit var dbHelper: DBHelper
     lateinit var trans: TransactionModel
+    lateinit var adapter: TransAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -131,6 +133,8 @@ class AddDataFragment : Fragment() {
                 binding.edtamount.setText("")
                 binding.edtcategory.setText("")
                 binding.edtnotes.setText("")
+
+                adapter.updateData(dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>)
             }
         }
     }

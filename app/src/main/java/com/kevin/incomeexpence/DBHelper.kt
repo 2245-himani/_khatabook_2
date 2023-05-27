@@ -20,8 +20,9 @@ class DBHelper (
     var DATE = "date"
     var MONTH = "month"
     var YEAR = "year"
+
     override fun onCreate(p0: SQLiteDatabase?) {
-        var que = "CREATE TABLE $TABLE_NAME($Id INTEGER PRIMARY KEY AUTOINCREMENT ,$AMOUNT INTEGER , $CATEGORY TEXT, $NOTE TEXT, $IS_EXPENCE INTEGER, $DATE TEXT,$MONTH TEXT,$YEAR TEXT)"
+        var que = "CREATE TABLE $TABLE_NAME($Id INTEGER PRIMARY KEY AUTOINCREMENT ,$AMOUNT INTEGER , $CATEGORY TEXT, $NOTE TEXT, $IS_EXPENCE INTEGER, $DATE TEXT, $MONTH TEXT, $YEAR TEXT)"
         p0?.execSQL(que)
     }
 

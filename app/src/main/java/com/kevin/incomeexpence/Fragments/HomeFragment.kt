@@ -2,7 +2,9 @@ package com.kevin.incomeexpence.Fragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
@@ -10,12 +12,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.TimePicker
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevin.incomeexpence.DBHelper
 import com.kevin.incomeexpence.Model.TransactionModel
 import com.kevin.incomeexpence.TransAdapter
 import com.kevin.incomeexpence.databinding.FragmentHomeBinding
 import com.kevin.incomeexpence.databinding.UpdatedialogBinding
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class HomeFragment : Fragment() {
 
@@ -34,7 +40,6 @@ class HomeFragment : Fragment() {
         dbHelper = DBHelper(context)
         translist = dbHelper.getTransaction()
         updateTotal(translist)
-        translist = translist.reversed() as ArrayList<TransactionModel>
 
         adapter = TransAdapter({
             updatedialog(it)
@@ -45,6 +50,8 @@ class HomeFragment : Fragment() {
 
         binding.rcvtransaction.layoutManager = LinearLayoutManager(context)
         binding.rcvtransaction.adapter = adapter
+
+        translist = translist.reversed() as ArrayList<TransactionModel>
 
         return binding.root
     }
@@ -99,6 +106,53 @@ class HomeFragment : Fragment() {
         bind.edtcategory.setText(transactionModel.category)
         bind.edtnotes.setText(transactionModel.note)
 
+        bind.txtadddate.setOnClickListener {
+
+            var date = Date()
+
+            var format1 = SimpleDateFormat("dd-MM-YYYY")
+            var currentDate = format1.format(date)
+
+            var dates = currentDate.split("-")
+            bind.txtadddate.text = currentDate
+
+            var dialog =
+                DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
+                    override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+
+                        var Year = p1
+                        var Month = p2 + 1
+                        var Date = p3
+
+                        var selectedDate = "$p3-${(p2 + 1)}-$p1"
+                        bind.txtadddate.text = selectedDate
+                    }
+
+                }, dates[2].toInt(), dates[1].toInt() - 1, dates[0].toInt())
+            dialog.show()
+        }
+
+        bind.txttime.setOnClickListener {
+
+            var date = Date()
+
+            var format2 = SimpleDateFormat("hh:mm a")
+            var currentTime = format2.format(date)
+
+            bind.txttime.text = currentTime
+            var seleTime = currentTime
+
+            var dialog1 = TimePickerDialog(context, object : TimePickerDialog.OnTimeSetListener {
+                override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+
+                }
+
+            }, 10, 0, false)
+
+            dialog1.show()
+
+        }
+
         bind.income.setOnClickListener {
             isExpence = 0
             bind.income.setCardBackgroundColor(Color.parseColor("#22c391"))
@@ -134,25 +188,14 @@ class HomeFragment : Fragment() {
             var date = bind.txtadddate.text.toString()
             var month = bind.txtadddate.text.toString()
             var year = bind.txtadddate.text.toString()
-            var model = TransactionModel(
-                transactionModel.id,
-                amount,
-                category,
-                note,
-                transactionModel.isExpence,
-                date,
-                month,
-                year
-            )
+            var model = TransactionModel(transactionModel.id, amount, category, note, transactionModel.isExpence, date, month, year)
 
             dbHelper.updateTrans(model)
             dialog.dismiss()
             adapter.updateData(dbHelper.getTransaction())
             updateTotal(dbHelper.getTransaction())
             adapter.updateData(dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>)
-
         }
-
         dialog.show()
     }
 
