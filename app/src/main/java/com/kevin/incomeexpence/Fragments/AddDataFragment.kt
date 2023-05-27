@@ -24,7 +24,6 @@ class AddDataFragment : Fragment() {
     var isExpence = 0
     lateinit var dbHelper: DBHelper
     lateinit var trans: TransactionModel
-    lateinit var adapter: TransAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,12 +79,14 @@ class AddDataFragment : Fragment() {
             var dialog1 = TimePickerDialog(context, object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
 
+                    var hour = p1
+                    var minute = p2
+                    var selectedTime = "$p1:$p2"
+                    binding.txttime.text = selectedTime
                 }
 
-            }, 10, 0, false)
-
+            }, 10, 0, true)
             dialog1.show()
-
         }
 
         binding.income.setOnClickListener {
@@ -134,7 +135,6 @@ class AddDataFragment : Fragment() {
                 binding.edtcategory.setText("")
                 binding.edtnotes.setText("")
 
-                adapter.updateData(dbHelper.getTransaction().reversed() as ArrayList<TransactionModel>)
             }
         }
     }
