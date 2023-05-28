@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
         dbHelper = DBHelper(context)
         translist = dbHelper.getTransaction()
         updateTotal(translist)
+//        translist = translist.reversed() as ArrayList<TransactionModel>
 
         adapter = TransAdapter({
             updatedialog(it)
@@ -50,8 +51,6 @@ class HomeFragment : Fragment() {
 
         binding.rcvtransaction.layoutManager = LinearLayoutManager(context)
         binding.rcvtransaction.adapter = adapter
-
-        translist = translist.reversed() as ArrayList<TransactionModel>
 
         return binding.root
     }
