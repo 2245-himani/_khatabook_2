@@ -40,7 +40,9 @@ class HomeFragment : Fragment() {
         dbHelper = DBHelper(context)
         translist = dbHelper.getTransaction()
         updateTotal(translist)
-//        translist = translist.reversed() as ArrayList<TransactionModel>
+        if (translist.size>2){
+            translist = translist.reversed() as ArrayList<TransactionModel>
+        }
 
         adapter = TransAdapter({
             updatedialog(it)

@@ -165,7 +165,7 @@
                         android:id="@+id/totalexpence"
                         android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
-                        android:text="1350"
+                        android:text="1990"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />

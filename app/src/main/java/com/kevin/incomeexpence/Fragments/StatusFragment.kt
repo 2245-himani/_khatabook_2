@@ -30,8 +30,8 @@ class StatusFragment : Fragment() {
         binding = FragmentStatusBinding.inflate(layoutInflater)
 
         val list : kotlin.collections.ArrayList<PieEntry> = java.util.ArrayList()
-        list.add(PieEntry(30f,"Expence"))
         list.add(PieEntry(80f,"Income"))
+        list.add(PieEntry(20f,"Expence"))
 
         val pieDataSet = PieDataSet(list,"")
         pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS,255)
